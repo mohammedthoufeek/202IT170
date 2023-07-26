@@ -19,8 +19,34 @@ app.post('/train/register', async (req, res) => {
   }
 });
 
-app.get('/train/register', async (req, res) => {
-  const url = 'http://20.244.56.144/train/register';
+app.post('/train/auth', async (req, res) => {
+  const url = 'http://20.244.56.144/train/auth';
+
+  try {
+    const response = await axios.post(url, req.body);
+    console.log('Response:', response.data);
+    res.status(200).json(response.data); 
+  } catch (error) {
+    console.error('Error:', error.message);
+    res.status(500).json({ error: 'An error occurred while making the request.' });
+  }
+});
+
+app.get('/train/trains', async (req, res) => {
+  const url = 'http://20.244.56.144/train/auth';
+
+  try {
+    const response = await axios.post(url, req.body);
+    console.log('Response:', response.data);
+    res.status(200).json(response.data); 
+  } catch (error) {
+    console.error('Error:', error.message);
+    res.status(500).json({ error: 'An error occurred while making the request.' });
+  }
+});
+
+app.get('/train/trains/2344', async (req, res) => {
+  const url = 'http://20.244.56.144/train/trains/2344';
 
   try {
     const response = await axios.post(url, req.body);
