@@ -19,6 +19,19 @@ app.post('/train/register', async (req, res) => {
   }
 });
 
+app.get('/train/register', async (req, res) => {
+  const url = 'http://20.244.56.144/train/register';
+
+  try {
+    const response = await axios.post(url, req.body);
+    console.log('Response:', response.data);
+    res.status(200).json(response.data); 
+  } catch (error) {
+    console.error('Error:', error.message);
+    res.status(500).json({ error: 'An error occurred while making the request.' });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}`);
 });
